@@ -3,7 +3,7 @@
 </p>
 
 # Fountainpay-v1 React Library
-![Publish React Package](https://github.com/Fountainpay/Fountainpay-React-v1/workflows/Publish%20React%20Package/badge.svg)
+![Publish React Package](https://github.com/Foiuntain-Pay/Fountainpay-React-v1/workflows/Publish%20React%20Package/badge.svg)
 ![npm](https://img.shields.io/badge/Fountain-pay-red)
 ![npm](https://img.shields.io/badge/Fountain-pay-red)
 ![NPM](https://img.shields.io/badge/Fountain-pay-red)
