@@ -1,8 +1,9 @@
 {
-  "name": "fpcheckout-react-v1",
+  "name": "fountainpay-react-v1",
   "version": "1.3.0",
   "description": "Official React Package for Fountain payment APIs v1",
-  "main": "dist/index.js",
+  "main": "dist/index.ts",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Fountain/FPCheckout-React.git"
@@ -17,7 +18,9 @@
   "typings": "dist/index.d.ts",
   "jsnext:main": "dist/index.es.js",
   "scripts": {
-    "build": "rm -rf dist && rollup -c "
+    "build": "rm -rf dist && rollup -c ",
+    "version" : "git add -A src",
+    "postversion" : "git push && git push --tags"
   },
   "keywords": [
     "javaScript",
@@ -95,5 +98,6 @@
   },
   "dependencies": {
     "axios": "^0.21.1"
-  }
+  },
+  "files": ["lib/**/"]
 }
