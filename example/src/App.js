@@ -5,22 +5,16 @@ import { useFPCheckout, FPCheckoutButton, closePaymentModal } from './dist/index
 export default function App() {
   const [gConfig, setGConfig] = React.useState();
   const config = {
-    public_key: "FP-PUBK-9603605594851666993306925",
-    tnx_ref: Date.now(),
+    publicKey: "FP-PUBK-9603605594851666993306925",
+    tnxRef: Date.now(),
     amount: 10,
     currency: 'NGN',
     channels: ["card", "qrcode", "directDebit"],
     customer: {
       email: 'user@gmail.com',
-      phone_number: '08102909304',
+      phoneNo: '08102909304',
       lastname: 'test',
       firstname:'user'
-    },
-
-    customizations: {
-      title: 'Home Front',
-      description: 'Payment for items',
-      logo: 'https://assets.piedpiper.com/logo.png',
     },
   };
   

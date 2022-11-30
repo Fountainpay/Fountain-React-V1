@@ -5,7 +5,7 @@ export interface FpcheckoutProps {
     /**
      * 	Your transaction reference. This MUST be unique for every transaction
      */
-    tnx_ref: string;
+    tnxRef: string;
     amount: number;
     /**
      * currency to charge in. Defaults to NGN
@@ -50,19 +50,6 @@ export interface FpcheckoutProps {
      */
     metadata?: Record<string, unknown>;
     /**
-     * This is an object that contains title, logo, and description you want to display on the modal e.g
-     * e.g {
-     *    'title': 'example@gmail.com',
-     *    'description': '08012345678',
-     *    'logo': 'Takeshi Kovacs'
-     *  }
-     */
-    customizations: {
-        title: string;
-        description: string;
-        logo: string;
-    };
-    /**
      * function to be called when the payment is completed successfully
      */
     callback: (data: FpcheckoutResponse) => void;
@@ -70,18 +57,15 @@ export interface FpcheckoutProps {
      * function to be called when the mono connection is closed
      */
     onclose: () => void;
-    key?: string;
-    public_key?: string;
+    publicKey: string;
     subaccounts?: Array<unknown>;
 }
 export interface FpcheckoutConfig {
-    key: FpcheckoutProps['public_key'];
-    public_key: FpcheckoutProps['public_key'];
-    tnx_ref: FpcheckoutProps['tnx_ref'];
+    publicKey: FpcheckoutProps['publicKey'];
+    tnxRef: FpcheckoutProps['tnxRef'];
     amount: FpcheckoutProps['amount'];
     currency?: FpcheckoutProps['currency'];
     customer: FpcheckoutProps['customer'];
-    customizations: FpcheckoutProps['customizations'];
     metadata?: FpcheckoutProps['metadata'];
     redirect_url?: FpcheckoutProps['redirect_url'];
     channels: FpcheckoutProps['channels'];
@@ -94,7 +78,7 @@ export interface FpcheckoutResponse {
     amount: FpcheckoutProps['amount'];
     currency: FpcheckoutProps['currency'];
     customer: FpcheckoutProps['customer'];
-    tnx_ref: FpcheckoutProps['tnx_ref'];
+    tnxRef: FpcheckoutProps['tnxRef'];
     flw_ref: string;
     status: string;
     transaction_id: number;

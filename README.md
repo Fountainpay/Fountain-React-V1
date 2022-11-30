@@ -62,7 +62,7 @@ Import useFPCheckout to any component in your application and pass your config
 import { useFPCheckout } from 'Fountainpay-React-v1';
  const config = {
     key: 'FP-PUBK-**************************',
-    tnx_ref: Date.now(),
+    tnxRef: Date.now(),
     amount: 100,
     currency: 'NGN',
     channels: ["card", "qrcode", "directDebit"],
@@ -102,7 +102,7 @@ import { FPCheckoutButton, closePaymentModal } from 'Fountainpay-React-v1';
 export default function App() {
   const config = {
     key: 'FP-PUBK-**************************',
-    tnx_ref: Date.now(),
+    tnxRef: Date.now(),
     amount: 100,
     currency: 'NGN',
     channels: ["card", "qrcode", "directDebit"],
@@ -149,7 +149,7 @@ import { useFPCheckout, closePaymentModal } from 'Fountainpay-React-v1';
 export default function App() {
   const config = {
     key: 'FP-PUBK-**************************',
-    tnx_ref: Date.now(),
+    tnxRef: Date.now(),
     amount: 100,
     currency: 'NGN',
     channels: ["card", "qrcode", "directDebit"],
@@ -198,7 +198,7 @@ Read more about our parameters and how they can be used [here](https://doc.fount
 | Parameter           | Always Required ? | Description                                                                                                                                                                                                                             |
 | ------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | key          | True              | Your API public key                                                                                                                                                                                                                     |
-| tnx_ref              | True              | Your transaction reference. This MUST be unique for every transaction                                                                                                                                                                   |
+| tnxRef              | True              | Your transaction reference. This MUST be unique for every transaction                                                                                                                                                                   |
 | amount              | True              | Amount to charge the customer.                                                                                                                                                                                                          |
 | currency            | False             | currency to charge in. Defaults to NGN                                                                                                                                                                                                  |
 | integrity_hash      | False             | This is a sha256 hash of your FlutterwaveCheckout values, it is used for passing secured values to the payment gateway.                                                                                                                 |

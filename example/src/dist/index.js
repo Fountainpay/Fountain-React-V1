@@ -146,8 +146,6 @@ function useFpcheckout(FpcheckoutConfig) {
             throw new Error('Unable to load fountainpay payment modal');
         if (loaded) {
             console.log("Init Config: ", FpcheckoutConfig);
-            FpcheckoutConfig.key = FpcheckoutConfig.public_key;
-            delete FpcheckoutConfig.public_key;
             var FpcheckoutArgs = __assign(__assign({}, FpcheckoutConfig), { amount: (_b = FpcheckoutConfig.amount) !== null && _b !== void 0 ? _b : 0, callback: callback, onclose: onClose, channels: (_c = FpcheckoutConfig === null || FpcheckoutConfig === void 0 ? void 0 : FpcheckoutConfig.channels) !== null && _c !== void 0 ? _c : ["card", "qrcode", "directDebit"] });
             console.log("Config: ", FpcheckoutArgs);
             return (

@@ -34,8 +34,7 @@ export default function useFpcheckout(FpcheckoutConfig: FpcheckoutConfig): ({ ca
     
     if (loaded) {
       console.log("Init Config: ", FpcheckoutConfig)
-      FpcheckoutConfig.key=FpcheckoutConfig.public_key;
-      delete FpcheckoutConfig.public_key;
+      
       const FpcheckoutArgs: FpcheckoutProps = {
         ...FpcheckoutConfig,
         amount: FpcheckoutConfig.amount ?? 0,
