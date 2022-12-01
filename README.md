@@ -46,10 +46,10 @@ Available features include:
 Install the SDK
 
 ```bash
-$ npm install Fountainpay-React-v1
+$ npm i fountainpay-react
 
 # or
-$ yarn add Fountainpay-React-v1
+$ yarn add fountainpay-react
 
 ```
 
@@ -61,22 +61,17 @@ Import useFPCheckout to any component in your application and pass your config
 ```javascript
 import { useFPCheckout } from 'Fountainpay-React-v1';
  const config = {
-    key: 'FP-PUBK-**************************',
+    publicKey: 'FP-PUBK-**************************',
     tnxRef: Date.now(),
     amount: 100,
     currency: 'NGN',
     channels: ["card", "qrcode", "directDebit"],
     customer: {
       email: 'user@gmail.com',
-      phone_number: '070********',
+      phoneNo: '070********',
       lastname: 'john',
       firstname:''
-    },
-    customizations: {
-      title: 'my Payment Title',
-      description: 'Payment for items in cart',
-      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
-    },
+    }
   };
 
  useFPCheckout(config)
@@ -86,7 +81,7 @@ import { useFPCheckout } from 'Fountainpay-React-v1';
 
 ## Usage
 
-Add Fountainpayto your projects as a component or a react hook:
+Add Fountainpay to your projects as a component or a react hook:
 
 1. [As a Component](#components)
 2. [Directly in your code](#hooks)
@@ -101,26 +96,21 @@ import { FPCheckoutButton, closePaymentModal } from 'Fountainpay-React-v1';
 
 export default function App() {
   const config = {
-    key: 'FP-PUBK-**************************',
+    publicKey: 'FP-PUBK-**************************',
     tnxRef: Date.now(),
     amount: 100,
     currency: 'NGN',
     channels: ["card", "qrcode", "directDebit"],
     customer: {
       email: 'user@gmail.com',
-      phone_number: '070********',
+      phoneNo: '070********',
       lastname: 'john',
       firstname:''
-    },
-    customizations: {
-      title: 'my Payment Title',
-      description: 'Payment for items in cart',
-      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
-    },
+    }
   };
 
 
-  const fwConfig = {
+  const config = {
     ...config,
     text: 'Pay with Fountainpay!',
     callback: (response) => {
@@ -133,7 +123,7 @@ export default function App() {
   return (
     <div className="App">
      <h1>Hello Test user</h1>
-      <FPCheckoutButton {...fwConfig} />
+      <FPCheckoutButton {...config} />
     </div>
   );
 }
@@ -148,22 +138,17 @@ import { useFPCheckout, closePaymentModal } from 'Fountainpay-React-v1';
 
 export default function App() {
   const config = {
-    key: 'FP-PUBK-**************************',
+    publicKey: 'FP-PUBK-**************************',
     tnxRef: Date.now(),
     amount: 100,
     currency: 'NGN',
     channels: ["card", "qrcode", "directDebit"],
     customer: {
       email: 'user@gmail.com',
-      phone_number: '070********',
+      phoneNo: '070********',
       lastname: 'john',
       firstname:''
-    },
-    customizations: {
-      title: 'my Payment Title',
-      description: 'Payment for items in cart',
-      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
-    },
+    }
   };
 
   const handlePayment = useFPCheckout(config);
@@ -197,16 +182,15 @@ Read more about our parameters and how they can be used [here](https://doc.fount
 
 | Parameter           | Always Required ? | Description                                                                                                                                                                                                                             |
 | ------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| key          | True              | Your API public key                                                                                                                                                                                                                     |
+| publicKey          | True              | Your API public key                                                                                                                                                                                                                     |
 | tnxRef              | True              | Your transaction reference. This MUST be unique for every transaction                                                                                                                                                                   |
 | amount              | True              | Amount to charge the customer.                                                                                                                                                                                                          |
-| currency            | False             | currency to charge in. Defaults to NGN                                                                                                                                                                                                  |
-| integrity_hash      | False             | This is a sha256 hash of your FlutterwaveCheckout values, it is used for passing secured values to the payment gateway.                                                                                                                 |
+| currency            | False             | currency to charge in. Defaults to NGN                                                                                                                                                                                                                                                         
 | channels            | True              | This specifies the payment options to be displayed e.g - card, mobilemoney, ussd and so on.                                                                                                                                                                                                                                                         
 | redirect_url        | False             | URL to redirect to when a transaction is completed. This is useful for 3DSecure payments so we can redirect your customer back to a custom page you want to show them.                                                                  |
-| customer            | True              | This is an object that can contains your customer details: e.g - 'customer': {'email': 'example@example.com','phone_number': '080********', 'lastname': 'Richards', firstname:'Adedeji' }                                                                                        |
-| metadata                | False             | This is an object that helps you include additional payment information to your request e.g {'consumer_id': 23,'consumer_mac': '92a3-912ba-1192a' }                                                                                     |
-| customizations      | True              | This is an object that contains title, logo, and description you want to display on the modal e.g{'title': 'Pied Piper Payments','description': 'Middleout isn't free. Pay the price','logo': 'https://......' } |
+| customer            | True              | This is an object that can contains your customer details: e.g - 'customer': {'email': 'example@example.com','phoneNo': '080********', 'lastname': 'Richards', firstname:'Adedeji' }                                                                                        |
+| metadata                | False             | This is an object that helps you include additional payment information to your request e.g {'container': '','theme': {disableDarkMode: false} }                                                                                     |
+
 | callback (function) | False             | This is the function that runs after payment is completed                                                                                                                                                                               |
 | close (function)    | False             | This is the function that runs after payment modal is closed                                                                                                                                                                            |
 
@@ -218,7 +202,7 @@ Methods provided by the React SDK:
 | ------------- | ------------- | ------------- | ------------- |
 | closePaymentModal  |  Null | Null | This methods allows you to close the payment modal via code. |
 
-Please checkout [Fountainpay Documentation](https://docs.fountainpay.ng/docs/standard) for other available options you can add to the tag.
+Please check [Fountainpay Documentation](https://docs.fountainpay.ng/docs/standard) for other available options you can add to the tag.
 
 
 
@@ -232,7 +216,7 @@ For `authorization` and `validation` error responses, double-check your API ke
 
 # Support
 
-For additional assistance using this library, please create an issue on the Github repo or contact the developer experience (DX) team via [email](mailto:developers@fountainpay.ng) or on [slack](https://bit.ly/34Vkzcg).
+For additional assistance using this library, please create an issue on the Github repo or contact the developer experience (DX) team via [email](mailto:developers@fountainpay.ng).
 
 You can also follow us [@fountainpayng](https://twitter.com/fountainpayng) and let us know what you think 😊.
 
