@@ -1,4 +1,28 @@
-import * as React from 'react';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var React = require('react');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n["default"] = e;
+  return Object.freeze(n);
+}
+
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
 /**
  * Check out {@link https://docs.fountainpay.ng/docs/standard} for more information.
@@ -49,11 +73,11 @@ function __rest(s, e) {
 var loadedScripts = {};
 var src = 'https://libraries.fountainpay.ng/v.1.0/inline.js';
 function useFWScript() {
-    var _a = React.useState({
+    var _a = React__namespace.useState({
         loaded: false,
         error: false,
     }), state = _a[0], setState = _a[1];
-    React.useEffect(function () {
+    React__namespace.useEffect(function () {
         if (loadedScripts.hasOwnProperty(src)) {
             setState({
                 loaded: true,
@@ -98,7 +122,7 @@ function useFWScript() {
  */
 function useFpcheckout(FpcheckoutConfig) {
     var _a = useFWScript(), loaded = _a[0], error = _a[1];
-    React.useEffect(function () {
+    React__namespace.useEffect(function () {
         if (error)
             throw new Error('Unable to load fountainpay payment modal');
     }, [error]);
@@ -112,7 +136,6 @@ function useFpcheckout(FpcheckoutConfig) {
         if (error)
             throw new Error('Unable to load fountainpay payment modal');
         if (loaded) {
-            console.log("Init Config: ", FpcheckoutConfig);
             var FpcheckoutArgs = __assign(__assign({}, FpcheckoutConfig), { amount: (_b = FpcheckoutConfig.amount) !== null && _b !== void 0 ? _b : 0, callback: callback, close: close, channels: (_c = FpcheckoutConfig === null || FpcheckoutConfig === void 0 ? void 0 : FpcheckoutConfig.channels) !== null && _c !== void 0 ? _c : ["card", "qrcode", "directDebit"] });
             console.log("Config: ", FpcheckoutArgs);
             return (
@@ -129,7 +152,7 @@ var FpcheckoutButton = function (_a) {
     var text = _a.text, className = _a.className, children = _a.children, callback = _a.callback, close = _a.close, disabled = _a.disabled, config = __rest(_a, ["text", "className", "children", "callback", "close", "disabled"]);
     var handleFpcheckoutPayment = useFpcheckout(config);
     console.log(config);
-    return (React.createElement("button", { disabled: disabled, className: className, onClick: function () { return handleFpcheckoutPayment({ callback: callback, close: close }); } }, text || children));
+    return (React__namespace.createElement("button", { disabled: disabled, className: className, onClick: function () { return handleFpcheckoutPayment({ callback: callback, close: close }); } }, text || children));
 };
 
 /**
@@ -144,4 +167,7 @@ function closePaymentModal() {
     });
 }
 
-export { FpcheckoutButton as FPCheckoutButton, closePaymentModal, types as fpCheckoutTypes, useFpcheckout as useFPCheckout };
+exports.FPCheckoutButton = FpcheckoutButton;
+exports.closePaymentModal = closePaymentModal;
+exports.fpCheckoutTypes = types;
+exports.useFPCheckout = useFpcheckout;

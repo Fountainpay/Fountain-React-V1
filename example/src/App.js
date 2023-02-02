@@ -1,11 +1,12 @@
 import React from 'react';
-import { useFPCheckout, FPCheckoutButton, closePaymentModal } from './dist/index';
+import { useFPCheckout, FPCheckoutButton, closePaymentModal } from "fountainpay-react";//'./dist/index';
 
 
 export default function App() {
-  const [gConfig, setGConfig] = React.useState();
+  const [gConfig, setGConfig] = React.useState(null);
+
   const config = {
-    publicKey: "FP-PUBK-9603605594851666993306925",
+    publicKey: "FP-PUBK-7688237368111670408531611",
     tnxRef: Date.now(),
     amount: 10,
     currency: 'NGN',
@@ -14,10 +15,11 @@ export default function App() {
       email: 'user@gmail.com',
       phoneNo: '08102909304',
       lastname: 'test',
-      firstname:'user'
-    },
+      othername:'user'
+    }
   };
   
+  const  handlePayment = useFPCheckout(config);
   React.useEffect(() => {
     const globalConfig = {
       ...config,
@@ -26,15 +28,14 @@ export default function App() {
         console.log(response);
         closePaymentModal()
       },
-      onClose: () => {
-        console.log("You close me ooo")
+      close: () => {
+        console.log("You close me too")
       },
-      
     };
     setGConfig(globalConfig)
   }, []);
 
-  const  handlePayment = useFPCheckout(config);
+  
   
   return (
     <div className="App">
@@ -47,7 +48,7 @@ export default function App() {
             callback: (response) => {
               closePaymentModal()
             },
-            onClose: () => {
+            close: () => {
               console.log("You close me ooo")
             },
             

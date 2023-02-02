@@ -11,7 +11,7 @@ import {
  * @param config takes in configuration for fpcheckout
  * @returns handleFpcheckoutPayment function
  */
-export default function useFpcheckout(FpcheckoutConfig: FpcheckoutConfig): ({ callback, onClose }: InitializeFpcheckoutPayment) => void {
+export default function useFpcheckout(FpcheckoutConfig: FpcheckoutConfig): ({ callback, close }: InitializeFpcheckoutPayment) => void {
 
   const [loaded, error] = useFPScript();
   
@@ -23,23 +23,22 @@ export default function useFpcheckout(FpcheckoutConfig: FpcheckoutConfig): ({ ca
 
   /**
    *
-   * @param object - {callback, onClose}
+   * @param object - {callback, close}
    */
   function handleFpcheckoutPayment({
     callback,
-    onClose,
+    close,
   }: InitializeFpcheckoutPayment): void {
     if (error) throw new Error('Unable to load fountainpay payment modal');
     
     
     if (loaded) {
-      console.log("Init Config: ", FpcheckoutConfig)
       
       const FpcheckoutArgs: FpcheckoutProps = {
         ...FpcheckoutConfig,
         amount: FpcheckoutConfig.amount ?? 0,
         callback: callback,
-        onclose: onClose,
+        close: close,
         channels: FpcheckoutConfig?.channels ?? ["card", "qrcode", "directDebit"],
       };
       console.log("Config: ", FpcheckoutArgs)

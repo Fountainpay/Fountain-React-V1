@@ -6,7 +6,7 @@ interface FpcheckoutButtonProps extends FpcheckoutConfig {
   text?: string;
   className?: string;
   disabled?: boolean;
-  onClose: () => void;
+  close: () => void;
   children?: React.ReactNode;
   callback: (response: FpcheckoutResponse) => void;
 }
@@ -16,21 +16,21 @@ const FpcheckoutButton = ({
   className,
   children,
   callback,
-  onClose,
+  close,
   disabled,
   ...config
 }: FpcheckoutButtonProps): JSX.Element => {
-  const handleFpcheckoutPayment = useFpcheckout(config);
-
-  return (
-    <button
-      disabled={disabled}
-      className={className}
-      onClick={() => handleFpcheckoutPayment({ callback, onClose })}
-    >
-      {text || children}
-    </button>
-  );
+	const handleFpcheckoutPayment = useFpcheckout(config);
+	console.log(config)
+	return (
+		<button
+		disabled={disabled}
+		className={className}
+		onClick={() => handleFpcheckoutPayment({ callback, close })}
+		>
+		{text || children}
+		</button>
+	);
 };
 
 export default FpcheckoutButton;

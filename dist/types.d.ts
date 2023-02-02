@@ -48,7 +48,20 @@ export interface FpcheckoutProps {
      *   'consumer_mac': '92a3-912ba-1192a'
      *  }
      */
-    metadata?: Record<string, unknown>;
+    metadata?: {
+        container?: string;
+        debug?: boolean;
+        minimized?: boolean;
+        isMobile?: boolean;
+        theme?: {
+            disableDarkMode?: boolean;
+        };
+        customTheme?: CustomTheme;
+        text?: Text;
+        styles?: {
+            classNameContainer?: string;
+        };
+    };
     /**
      * function to be called when the payment is completed successfully
      */
@@ -59,6 +72,20 @@ export interface FpcheckoutProps {
     close: () => void;
     publicKey: string;
     subaccounts?: Array<unknown>;
+}
+export interface Text {
+    minimizedTitle?: string;
+    formTitle?: string;
+    formSubTitle?: string;
+    thankYouTitle?: string;
+    thankYouBody?: string;
+    faqTitle?: string;
+}
+export interface CustomTheme {
+    backgroundColor?: string;
+    fontColor?: string;
+    buttonBackgroundColor?: string;
+    buttonFontColor?: string;
 }
 export interface FpcheckoutConfig {
     publicKey: FpcheckoutProps['publicKey'];

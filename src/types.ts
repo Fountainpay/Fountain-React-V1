@@ -38,10 +38,12 @@
    */
   customer: {
     email: string;
-    phone_number: string;
+    phoneNo: string;
     lastname: string;
-    firstname: string;
+    othername?: string;
   };
+
+  
   /**
    *  This is an object that helps you include additional payment information to your request
    * e.g {
@@ -49,23 +51,51 @@
    *   'consumer_mac': '92a3-912ba-1192a'
    *  }
    */
-   metadata?: Record<string, unknown>;
+   metadata?: {
+		container?: string;
+		debug?: boolean;
+		minimized?: boolean;
+		isMobile?: boolean;
+		theme?: {
+			disableDarkMode?: boolean;
+		};
+		customTheme?: CustomTheme;
+		text?: Text;
+		styles?: {
+			classNameContainer?: string;
+		};
+  };
   
   /**
    * function to be called when the payment is completed successfully
    */
-  callback: (data: FpcheckoutResponse) => void;
+  callback: (data: any) => void;
 
   /**
-   * function to be called when the mono connection is closed
+   * function to be called when the modal connection is closed
    */
-  onclose: () => void;
+  close: () => void;
 
   publicKey: string;
 
   subaccounts?: Array<unknown>;
 }
 
+export interface Text {
+	minimizedTitle?: string;
+	formTitle?: string;
+	formSubTitle?: string;
+	thankYouTitle?: string;
+	thankYouBody?: string;
+	faqTitle?: string;
+  }
+
+  export interface CustomTheme {
+	backgroundColor?: string;
+	fontColor?: string;
+	buttonBackgroundColor?: string;
+	buttonFontColor?:string;
+  };
 export interface FpcheckoutConfig {
   publicKey: FpcheckoutProps['publicKey'];
   tnxRef: FpcheckoutProps['tnxRef'];
@@ -78,16 +108,15 @@ export interface FpcheckoutConfig {
 }
 
 export interface InitializeFpcheckoutPayment {
-  onClose: FpcheckoutProps['onclose'];
+  close: FpcheckoutProps['close'];
   callback: FpcheckoutProps['callback'];
 }
 
 export interface FpcheckoutResponse {
-  amount: FpcheckoutProps['amount'];
-  currency: FpcheckoutProps['currency'];
-  customer: FpcheckoutProps['customer'];
-  tnxRef: FpcheckoutProps['tnxRef'];
-  flw_ref: string;
-  status: string;
-  transaction_id: number;
+  amount?: FpcheckoutProps['amount'];
+  currency?: FpcheckoutProps['currency'];
+  customer?: FpcheckoutProps['customer'];
+  tnxRef?: FpcheckoutProps['tnxRef'];
+  status?: string;
+  transaction_id?: number;
 }

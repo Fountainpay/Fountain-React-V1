@@ -117,7 +117,7 @@ export default function App() {
        console.log(response);
       closePaymentModal() // this will close the modal programmatically
     },
-    onClose: () => {},
+    close: () => {},
   };
 
   return (
@@ -164,7 +164,7 @@ export default function App() {
                console.log(response);
                 closePaymentModal() // this will close the modal programmatically
             },
-            onClose: () => {},
+            close: () => {},
           });
         }}
       >

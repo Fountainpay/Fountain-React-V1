@@ -72,20 +72,12 @@ function __rest(s, e) {
 
 var loadedScripts = {};
 var src = 'https://libraries.fountainpay.ng/v.1.0/inline.js';
-function useFPScript() {
+function useFWScript() {
     var _a = React__namespace.useState({
         loaded: false,
         error: false,
     }), state = _a[0], setState = _a[1];
-    var isScriptExecuted = React__namespace.useRef(false);
     React__namespace.useEffect(function () {
-        if (isScriptExecuted.current) {
-            setState({
-                loaded: true,
-                error: false,
-            });
-        }
-        isScriptExecuted.current = true;
         if (loadedScripts.hasOwnProperty(src)) {
             setState({
                 loaded: true,
@@ -96,7 +88,6 @@ function useFPScript() {
             loadedScripts.src = src;
             var script_1 = document.createElement('script');
             script_1.src = src;
-            script_1.id = "fpCheckout";
             script_1.async = true;
             var onScriptLoad_1 = function () {
                 setState({
@@ -130,23 +121,23 @@ function useFPScript() {
  * @returns handleFpcheckoutPayment function
  */
 function useFpcheckout(FpcheckoutConfig) {
-    var _a = useFPScript(), loaded = _a[0], error = _a[1];
+    var _a = useFWScript(), loaded = _a[0], error = _a[1];
     React__namespace.useEffect(function () {
         if (error)
             throw new Error('Unable to load fountainpay payment modal');
     }, [error]);
     /**
      *
-     * @param object - {callback, onClose}
+     * @param object - {callback, close}
      */
     function handleFpcheckoutPayment(_a) {
         var _b, _c;
-        var callback = _a.callback, onClose = _a.onClose;
+        var callback = _a.callback, close = _a.close;
         if (error)
             throw new Error('Unable to load fountainpay payment modal');
         if (loaded) {
             console.log("Init Config: ", FpcheckoutConfig);
-            var FpcheckoutArgs = __assign(__assign({}, FpcheckoutConfig), { amount: (_b = FpcheckoutConfig.amount) !== null && _b !== void 0 ? _b : 0, callback: callback, onclose: onClose, channels: (_c = FpcheckoutConfig === null || FpcheckoutConfig === void 0 ? void 0 : FpcheckoutConfig.channels) !== null && _c !== void 0 ? _c : ["card", "qrcode", "directDebit"] });
+            var FpcheckoutArgs = __assign(__assign({}, FpcheckoutConfig), { amount: (_b = FpcheckoutConfig.amount) !== null && _b !== void 0 ? _b : 0, callback: callback, close: close, channels: (_c = FpcheckoutConfig === null || FpcheckoutConfig === void 0 ? void 0 : FpcheckoutConfig.channels) !== null && _c !== void 0 ? _c : ["card", "qrcode", "directDebit"] });
             console.log("Config: ", FpcheckoutArgs);
             return (
             // @ts-ignore
@@ -159,9 +150,10 @@ function useFpcheckout(FpcheckoutConfig) {
 }
 
 var FpcheckoutButton = function (_a) {
-    var text = _a.text, className = _a.className, children = _a.children, callback = _a.callback, onClose = _a.onClose, disabled = _a.disabled, config = __rest(_a, ["text", "className", "children", "callback", "onClose", "disabled"]);
+    var text = _a.text, className = _a.className, children = _a.children, callback = _a.callback, close = _a.close, disabled = _a.disabled, config = __rest(_a, ["text", "className", "children", "callback", "close", "disabled"]);
     var handleFpcheckoutPayment = useFpcheckout(config);
-    return (React__namespace.createElement("button", { disabled: disabled, className: className, onClick: function () { return handleFpcheckoutPayment({ callback: callback, onClose: onClose }); } }, text || children));
+    console.log(config);
+    return (React__namespace.createElement("button", { disabled: disabled, className: className, onClick: function () { return handleFpcheckoutPayment({ callback: callback, close: close }); } }, text || children));
 };
 
 /**
