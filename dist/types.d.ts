@@ -18,7 +18,7 @@ export interface FpcheckoutProps {
     /**
      * This specifies the payment options to be displayed e.g - [card, mobilemoney, ussd] and so on. Defaults to 'card, ussd, mobilemoney'
      */
-    channels: ["card", "qrcode", "directDebit"] | Array<string>;
+    channels?: ["card", "qrcode", "directDebit"] | Array<string>;
     /**
      *	This is the payment plan ID used for Recurring billing
      */
@@ -38,8 +38,8 @@ export interface FpcheckoutProps {
     customer: {
         email: string;
         phoneNo: string;
-        lastname: string;
-        othername?: string;
+        lastName: string;
+        otherName?: string;
     };
     /**
      *  This is an object that helps you include additional payment information to your request

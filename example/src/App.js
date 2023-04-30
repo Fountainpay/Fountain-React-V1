@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFPCheckout, FPCheckoutButton, closePaymentModal } from "fountainpay-react";//'./dist/index';
+import { useFPCheckout, FPCheckoutButton, closePaymentModal } from './dist/index';
 
 
 export default function App() {
@@ -10,12 +10,11 @@ export default function App() {
     tnxRef: Date.now(),
     amount: 10,
     currency: 'NGN',
-    channels: ["card", "qrcode", "directDebit"],
     customer: {
       email: 'user@gmail.com',
       phoneNo: '08102909304',
-      lastname: 'test',
-      othername:'user'
+      lastName: 'test',
+      otherName:'user'
     }
   };
   
@@ -33,6 +32,7 @@ export default function App() {
       },
     };
     setGConfig(globalConfig)
+	// eslint-disable-next-line
   }, []);
 
   

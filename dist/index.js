@@ -71,7 +71,7 @@ function __rest(s, e) {
 }
 
 var loadedScripts = {};
-var src = 'https://libraries.fountainpay.ng/v.1.0/inline.js';
+var src = 'https://libraries.fountainpay.ng/production/v.1.0/inline.js';
 function useFWScript() {
     var _a = React__namespace.useState({
         loaded: false,
@@ -131,13 +131,12 @@ function useFpcheckout(FpcheckoutConfig) {
      * @param object - {callback, close}
      */
     function handleFpcheckoutPayment(_a) {
-        var _b, _c;
+        var _b;
         var callback = _a.callback, close = _a.close;
         if (error)
             throw new Error('Unable to load fountainpay payment modal');
         if (loaded) {
-            var FpcheckoutArgs = __assign(__assign({}, FpcheckoutConfig), { amount: (_b = FpcheckoutConfig.amount) !== null && _b !== void 0 ? _b : 0, callback: callback, close: close, channels: (_c = FpcheckoutConfig === null || FpcheckoutConfig === void 0 ? void 0 : FpcheckoutConfig.channels) !== null && _c !== void 0 ? _c : ["card", "qrcode", "directDebit"] });
-            console.log("Config: ", FpcheckoutArgs);
+            var FpcheckoutArgs = __assign(__assign({}, FpcheckoutConfig), { amount: (_b = FpcheckoutConfig.amount) !== null && _b !== void 0 ? _b : 100, callback: callback, close: close });
             return (
             // @ts-ignore
             window.Fountainpay &&

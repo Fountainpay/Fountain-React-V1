@@ -36,12 +36,12 @@ export default function useFpcheckout(FpcheckoutConfig: FpcheckoutConfig): ({ ca
       
       const FpcheckoutArgs: FpcheckoutProps = {
         ...FpcheckoutConfig,
-        amount: FpcheckoutConfig.amount ?? 0,
+        amount: FpcheckoutConfig.amount ?? 100,
         callback: callback,
         close: close,
-        channels: FpcheckoutConfig?.channels ?? ["card", "qrcode", "directDebit"],
+        //channels: FpcheckoutConfig?.channels ?? ["card", "qrcode", "directDebit"],
       };
-      console.log("Config: ", FpcheckoutArgs)
+      
       return (
         // @ts-ignore
         window.Fountainpay &&

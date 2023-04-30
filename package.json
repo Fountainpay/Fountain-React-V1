@@ -1,6 +1,6 @@
 {
   "name": "fountainpay-react",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "Official React Package for Fountain payment APIs v1",
   "main": "dist/index.js",
   "repository": {

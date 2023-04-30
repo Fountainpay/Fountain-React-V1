@@ -9,7 +9,7 @@ interface ScriptStatusInterface {
   error: boolean;
 }
 
-const src = 'https://libraries.fountainpay.ng/v.1.0/inline.js';
+const src = 'https://libraries.fountainpay.ng/production/v.1.0/inline.js';
 
 export default function useFWScript(): readonly [boolean, boolean] {
 	const [state, setState] = React.useState<ScriptStatusInterface>({
